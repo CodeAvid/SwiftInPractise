@@ -43,9 +43,11 @@ struct ContentView: View {
                 }
             }
             NavigationStack {
-                List($vistors, id: \.self,  editActions: .delete){ $vistor in
-                    Text(vistor)
-                        .deleteDisabled(true)
+                List {
+                    ForEach($vistors, id: \.self){ $vistor in
+                        Text(vistor)
+                    }
+                    .onDelete(perform: delete)
                 }
     
             }
@@ -56,7 +58,7 @@ struct ContentView: View {
     }
     
     func delete(at offsets: IndexSet){
-        
+        vistors.remove(atOffsets: offsets)
     }
 }
 
