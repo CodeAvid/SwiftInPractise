@@ -38,9 +38,13 @@ struct ContentView: View {
             //created a dyanamic content using ForEach method
             
             List {
-                ForEach(restaurants){ restaurant in
-                    RestaurantRow(restaurant: restaurant)
+                Section(header: Text("Best Restaurants in Lagos"), footer: Text("check for more places")) {
+                    ForEach(restaurants){ restaurant in
+                        RestaurantRow(restaurant: restaurant)
+                    }
                 }
+                .headerProminence(.increased)
+               
             }
             NavigationStack {
                 List {
