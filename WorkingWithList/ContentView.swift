@@ -30,23 +30,31 @@ struct ContentView: View {
         Restaurant(name: "taj lagos")
     ]
     
+    @State private var vistors = ["Victor", "Segun", "tobi", "Emeka", "Stephanie"]
+    
     var body: some View {
-       
+    
         VStack {
             //created a dyanamic content using ForEach method
+            
             List {
                 ForEach(restaurants){ restaurant in
                     RestaurantRow(restaurant: restaurant)
                 }
             }
-            
+            NavigationStack {
+                List($vistors, id: \.self,  editActions: .delete){ $vistor in
+                    Text(vistor)
+                }
+            }
             //Alternative approach is to use rowContent available in list
             List(restaurants, rowContent: RestaurantRow.init)
             
         }
+    }
+    
+    func delete(at offsets: IndexSet){
         
-     
-
     }
 }
 
