@@ -45,7 +45,9 @@ struct ContentView: View {
             NavigationStack {
                 List($vistors, id: \.self,  editActions: .delete){ $vistor in
                     Text(vistor)
+                        .deleteDisabled(true)
                 }
+    
             }
             //Alternative approach is to use rowContent available in list
             List(restaurants, rowContent: RestaurantRow.init)
