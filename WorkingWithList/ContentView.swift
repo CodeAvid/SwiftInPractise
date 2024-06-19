@@ -53,12 +53,15 @@ struct ContentView: View {
             }
             
             NavigationStack {
-                List($vistors, id: \.self, editActions: .move){ $vistor in
-                    Text(vistor)
+                List {
+                    ForEach($vistors, id: \.self){ $vistor in
+                        Text(vistor)
+                    }
+                    .onMove(perform: move)
                 }
                 .toolbar(content: {
                     EditButton()
-                })
+            })
             }
             //Alternative approach is to use rowContent available in list
             List(restaurants, rowContent: RestaurantRow.init)
@@ -68,6 +71,10 @@ struct ContentView: View {
     
     func delete(at offsets: IndexSet){
         vistors.remove(atOffsets: offsets)
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        vistors.move(fromOffsets: source, toOffset: destination)
     }
 }
 
