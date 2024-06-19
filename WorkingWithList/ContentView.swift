@@ -51,6 +51,15 @@ struct ContentView: View {
                 }
     
             }
+            
+            NavigationStack {
+                List($vistors, id: \.self, editActions: .move){ $vistor in
+                    Text(vistor)
+                }
+                .toolbar(content: {
+                    EditButton()
+                })
+            }
             //Alternative approach is to use rowContent available in list
             List(restaurants, rowContent: RestaurantRow.init)
             
